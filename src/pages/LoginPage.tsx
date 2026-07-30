@@ -14,14 +14,21 @@ export default function LoginPage() {
           </p>
         </div>
         <div className="gap-2 flex flex-col w-full">
-          <label className="text-xs font-semibold px-">Email address</label>
+          <label className="text-xs font-semibold">Email address</label>
           <input
             className={inputClass}
             type="text"
             placeholder="youremail@example.com"
           />
-          <div></div>
-          <label className="text-xs font-semibold px-">Password</label>
+          <div className="flex justify-between items-center">
+            <label className="text-xs font-semibold px-">Password</label>
+            <NavLink
+              to={"/forgot-password"}
+              className={"text-xs text-blue-600 font-medium"}
+            >
+              Forgot password?
+            </NavLink>
+          </div>
           <input
             className={inputClass}
             type="password"

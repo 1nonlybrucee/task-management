@@ -10,18 +10,17 @@ export default function RegisterPage() {
         <div className="mb-6 items-center flex flex-col">
           <h1 className="font-bold text-xl ">Create an ccount</h1>
           <p className="text-xs text-slate-500 font-medium">
-            input your details
+            Enter your details below to get started
           </p>
         </div>
         <div className="gap-2 flex flex-col w-full">
-          <label className="text-xs font-semibold px-">Email address</label>
+          <label className="text-xs font-semibold">Email address</label>
           <input
             className={inputClass}
             type="text"
             placeholder="youremail@example.com"
           />
-          <div></div>
-          <label className="text-xs font-semibold px-">Password</label>
+          <label className="text-xs font-semibold">Password</label>
           <input
             className={inputClass}
             type="password"
