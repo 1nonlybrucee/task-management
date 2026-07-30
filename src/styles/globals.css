@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* Optional: Custom theme extensions for Tailwind v4 */
+:root {
+  --font-sans:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background-color: #f8fafc; /* Tailwind slate-50 */
+  color: #0f172a; /* Tailwind slate-900 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+}
