@@ -18,7 +18,9 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() =>
+    authService.getCurrentUser(),
+  );
 
   useEffect(() => {
     const currentUser = authService.getCurrentUser();
