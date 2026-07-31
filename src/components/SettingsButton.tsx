@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Settings } from "lucide-react";
 import clsx from "clsx";
+import { useAuth } from "../context/AuthContext";
 
 export default function SettingsButton() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const { logout } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="relative">
       {isSettingsOpen && (
@@ -18,15 +21,18 @@ export default function SettingsButton() {
           >
             Profile
           </NavLink>
-          <NavLink
-            to={"/login"}
+          <button
+            type="button"
             className={
               "w-full flex items-center px-3 py-2 text-sm font-medium text-red-600 rounded-lg hover:bg-red-50 transition-colors"
             }
-            onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+            onClick={() => {
+              logout();
+              navigate("/login");
+            }}
           >
             Log out
-          </NavLink>
+          </button>
         </div>
       )}
       <button

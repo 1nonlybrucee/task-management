@@ -10,7 +10,7 @@ import type { LoginCredentials, RegisterData, User } from "../types/auth";
 
 interface AuthContextType {
   user: User | null;
-  login: (credentials: LoginCredentials) => void;
+  login: (credentials: LoginCredentials) => User;
   register: (data: RegisterData) => void;
   logout: () => void;
 }
@@ -32,8 +32,9 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const login = (credentials: LoginCredentials) => {
-    const newUser = authService.login(credentials);
-    setUser(newUser);
+    const user = authService.login(credentials);
+    setUser(user);
+    return user;
   };
 
   const logout = () => {

@@ -25,12 +25,11 @@ function saveUsers(users: RegisteredUser[]) {
 }
 
 export const authService = {
-  register(data: RegisterData): User {
+  register(data: RegisterData): void {
     const users = getUsers();
 
     const emailExists = users.some(
-      (user) =>
-        user.email.toLocaleLowerCase() === data.email.toLocaleLowerCase(),
+      (user) => user.email.toLowerCase() === data.email.toLowerCase(),
     );
 
     if (emailExists) {
@@ -40,20 +39,12 @@ export const authService = {
     const newUser: RegisteredUser = {
       id: crypto.randomUUID(),
       name: data.name,
-      email: data.email.trim().toLocaleLowerCase(),
+      email: data.email.trim().toLowerCase(),
       password: data.password,
     };
 
     users.push(newUser);
     saveUsers(users);
-
-    const currentUser: User = {
-      id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-    };
-
-    return currentUser;
   },
 
   login(credentials: LoginCredentials): User {
@@ -61,13 +52,13 @@ export const authService = {
 
     const foundUser = users.find(
       (user) =>
-        user.email.trim().toLocaleLowerCase() ===
+        user.email.trim().toLowerCase() ===
           credentials.email.trim().toLowerCase() &&
         user.password === credentials.password,
     );
 
     if (!foundUser) {
-      throw new Error("Invalid email or password");
+      throw new Error("Incorrect email or password.");
     }
 
     const currentUser: User = {
