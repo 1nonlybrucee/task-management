@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <header className="bg-white sticky top-0 z-20 w-full border-b border-slate-200/80">
       <nav className="flex items-center gap-8 px-6 py-3.5 justify-between">
-        <h1 className="font-bold text-lg text-slate-800">Task Management</h1>
+        <h1 className="font-bold text-2xl text-blue-800">Bahog Bilat</h1>
         <div className="flex gap-6 items-center">
           <form className="flex items-center justify-center gap-1">
             <div className="relative w-full">
