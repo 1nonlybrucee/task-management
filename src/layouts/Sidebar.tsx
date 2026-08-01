@@ -13,20 +13,19 @@ export default function Sidebar() {
     );
 
   return (
-    <aside className="w-64 bg-white border border-slate-200/80 justify-between flex flex-col">
-      <div className="flex flex-col ">
-        <span className="font-bold text-xs text-gray-500 tracking-wide px-3 mb-2 mt-1 "></span>
-        <NavLink to={"/"} className={linkClass}>
+    <aside className="flex h-full w-64 shrink-0 flex-col justify-between border-r border-slate-200/80 bg-white">
+      <div className="flex flex-col py-3">
+        <NavLink to="/" className={linkClass}>
           Dashboard
         </NavLink>
-        <NavLink to={"/projects"} className={linkClass}>
+        <NavLink to="/projects" className={linkClass}>
           Projects
         </NavLink>
-        <NavLink to={"/tasks"} className={linkClass}>
+        <NavLink to="/tasks" className={linkClass}>
           Tasks
         </NavLink>
       </div>
-      <div className="border-t border-gray-300 p-4">
+      <div className="border-t border-slate-200 p-4">
         <SettingsButton />
       </div>
     </aside>

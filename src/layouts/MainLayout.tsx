@@ -4,14 +4,14 @@ import Sidebar from "./Sidebar";
 
 export default function MainLayout() {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex h-screen flex-col overflow-hidden bg-slate-50">
       <Navbar />
-      <div className="flex flex-1">
+
+      <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="p-6 flex-1">
-          <div className="mx-auto">
-            <Outlet />
-          </div>
+
+        <main className="flex-1 overflow-y-auto p-6">
+          <Outlet />
         </main>
       </div>
     </div>
