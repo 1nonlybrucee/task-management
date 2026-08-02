@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Project } from "../types/project";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -15,7 +16,7 @@ export default function ProjectsPage() {
     if (!projectName.trim()) return;
 
     const newProject: Project = {
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       name: projectName,
     };
 

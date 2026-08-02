@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import type {
   LoginCredentials,
   RegisterData,
@@ -37,7 +38,7 @@ export const authService = {
     }
 
     const newUser: RegisteredUser = {
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       name: data.name,
       email: data.email.trim().toLowerCase(),
       password: data.password,
