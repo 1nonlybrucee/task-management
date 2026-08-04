@@ -4,7 +4,7 @@ type CreateProjectCardProp = {
   onCreate: (name: string) => void;
 };
 
-export default function CreateProjectCard({ onCreate }: CreateProjectCardProp) {
+export default function CreateProjectForm({ onCreate }: CreateProjectCardProp) {
   const [projectName, setProjectName] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,9 +13,7 @@ export default function CreateProjectCard({ onCreate }: CreateProjectCardProp) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (!projectName.trim()) return;
-
     onCreate(projectName);
     setProjectName("");
   };
