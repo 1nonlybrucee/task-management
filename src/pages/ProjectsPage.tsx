@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { projectService } from "../services/projectService";
 import type { Project } from "../types/project";
 import CreateProjectForm from "../components/CreateProjectForm";
 import Modal from "../components/ui/Modal";
 import ProjectsList from "../components/ProjectsList";
 import AddProjectButton from "../components/AddProjectButton";
+import EditProjectForm from "../components/EditProjectForm";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>(
@@ -12,6 +13,26 @@ export default function ProjectsPage() {
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [toEdit, setToEdit] = useState<Project | undefined>(undefined);
+
+  const handleEdit = (id: string) => {
+    const project = projects.find((project) => project.id === id);
+
+    if (!project) return;
+    setToEdit(project);
+    setIsModalOpen(true);
+  };
+
+  const editProject = (updatedProject: Project) => {
+    projectService.update(updatedProject.id, updatedProject.name);
+    setProjects((prev) =>
+      prev.map((project) =>
+        project.id === updatedProject.id ? updatedProject : project,
+      ),
+    );
+    setToEdit(undefined);
+    setIsModalOpen(false);
+  };
 
   const handleDelete = (id: string) => {
     projectService.delete(id);
@@ -32,19 +53,26 @@ export default function ProjectsPage() {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    if (projects.length === 0) {
-      setIsModalOpen(true);
-    }
-  }, []);
   return (
     <>
       <div className="flex">
-        <ProjectsList projects={projects} onDelete={handleDelete} />
+        <ProjectsList
+          projects={projects}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+        />
         <AddProjectButton onClick={openModal} />
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <CreateProjectForm onCreate={handleCreateProject} />
+        {toEdit ? (
+          <EditProjectForm
+            key={toEdit.id}
+            project={toEdit}
+            onSave={editProject}
+          />
+        ) : (
+          <CreateProjectForm onCreate={handleCreateProject} />
+        )}
       </Modal>
     </>
   );
