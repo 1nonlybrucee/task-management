@@ -6,6 +6,7 @@ import Modal from "../components/ui/Modal";
 import ProjectsList from "../components/ProjectsList";
 import AddProjectButton from "../components/AddProjectButton";
 import EditProjectForm from "../components/EditProjectForm";
+import EmptyProjects from "../components/EmptyProject";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>(
@@ -56,13 +57,21 @@ export default function ProjectsPage() {
   return (
     <>
       <div className="flex gap-5">
-        <ProjectsList
-          projects={projects}
-          onDelete={handleDelete}
-          onEdit={handleEdit}
-        />
-        <AddProjectButton onClick={openModal} />
+        {projects.length === 0 ? (
+          <EmptyProjects onCreateProject={openModal} />
+        ) : (
+          <>
+            <ProjectsList
+              projects={projects}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
+
+            <AddProjectButton onClick={openModal} />
+          </>
+        )}
       </div>
+
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         {toEdit ? (
           <EditProjectForm
