@@ -57,6 +57,12 @@ export const taskService = {
     saveTask(newTask);
   },
 
+  deleteTaskByProject(projectId: string) {
+    const tasks = getTasks();
+    const newTasks = tasks.filter((task) => task.projectId !== projectId);
+    saveTask(newTasks);
+  },
+
   toggleComplete(id: string) {
     const tasks = getTasks();
     const task = tasks.find((t) => t.id === id);

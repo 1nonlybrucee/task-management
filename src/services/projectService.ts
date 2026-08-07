@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import type { Project } from "../types/project";
+import { taskService } from "./taskService";
 
 const PROJECTS_KEY = "projects";
 
@@ -67,6 +68,7 @@ export const projectService = {
   delete(id: string) {
     const projects = getProjects();
     const filtered = projects.filter((p) => p.id !== id);
+    taskService.deleteTaskByProject(id);
     saveProjects(filtered);
   },
 };
