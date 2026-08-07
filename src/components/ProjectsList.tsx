@@ -30,28 +30,35 @@ export default function ProjectsList({
   };
 
   return (
-    <div className="flex gap-4 ">
+    <div className="flex gap-4 items-start overflow-x-auto p-1">
       {projects.map((project) => (
         <div
           key={project.id}
-          className="flex flex-col gap-2 bg-white border border-slate-200 rounded-xl p-4 shadow-sm "
+          className="flex flex-col gap-3 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm w-72 shrink-0"
         >
-          <div className="flex gap-2">
-            <p className="text-xl font-semibold">{project.name}</p>
-            <button
-              onClick={() => onEdit(project.id)}
-              className="hover:text-blue-600 hover:bg-blue-100 px-0.5 transition-colors rounded"
-            >
-              <SquarePen />
-            </button>
-            <button
-              onClick={() => onDelete(project.id)}
-              className="hover:text-red-500 hover:bg-red-100 px-0.5 transition-colors rounded"
-            >
-              <Trash />
-            </button>
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="text-lg font-bold text-slate-800 truncate">
+              {project.name}
+            </h3>
+            <div className="flex items-center gap-1 text-slate-400 shrink-0">
+              <button
+                onClick={() => onEdit(project.id)}
+                className="p-1 hover:text-slate-700 hover:bg-slate-100 transition-colors rounded-md"
+                aria-label="Edit project"
+              >
+                <SquarePen className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => onDelete(project.id)}
+                className="p-1 hover:text-red-600 hover:bg-red-50 transition-colors rounded-md"
+                aria-label="Delete project"
+              >
+                <Trash className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-          <div>
+
+          <div className="flex flex-col gap-2">
             {selectedProjectId === project.id && (
               <AddTaskForm
                 onCreate={handleCreateTask}
@@ -59,11 +66,15 @@ export default function ProjectsList({
                 onClose={() => setSelectedProjectId(null)}
               />
             )}
-            <div>
-              <TaskList projectId={project.id} tasks={tasks} />
-            </div>
-            <button onClick={() => setSelectedProjectId(project.id)}>
-              <Plus />
+
+            <TaskList projectId={project.id} tasks={tasks} />
+
+            <button
+              onClick={() => setSelectedProjectId(project.id)}
+              className="flex items-center justify-center p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors rounded-lg w-fit mt-1"
+              aria-label="Add task"
+            >
+              <Plus className="w-5 h-5" />
             </button>
           </div>
         </div>

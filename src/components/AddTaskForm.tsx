@@ -1,55 +1,53 @@
 import { useState } from "react";
 
-type AddTaskProps = {
+type AddTaskFormProps = {
   projectId: string;
   onCreate: (projectId: string, title: string) => void;
   onClose: () => void;
 };
 
 export default function AddTaskForm({
-  onCreate,
   projectId,
+  onCreate,
   onClose,
-}: AddTaskProps) {
-  const [taskName, setTaskName] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTaskName(e.target.value);
-  };
+}: AddTaskFormProps) {
+  const [title, setTitle] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!taskName.trim()) return;
-    onCreate(projectId, taskName);
-    setTaskName("");
+    if (!title.trim()) return;
+
+    onCreate(projectId, title.trim());
+    setTitle("");
     onClose();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-end gap-3 max-w-sm">
-      <div className="flex flex-col gap-1 flex-1">
-        <label
-          htmlFor="task-name"
-          className="text-left text-xs font-semibold text-gray-700"
-        >
-          Task name
-        </label>
-        <input
-          value={taskName}
-          onChange={handleChange}
-          id="task-name"
-          type="text"
-          className="w-full border border-gray-300 rounded-xl px-3 py-1 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-          placeholder="e.g. karigos"
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 mb-2">
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Enter task title..."
+        autoFocus
+        className="w-full px-3 py-2 text-sm bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+      />
 
-      <button
-        type="submit"
-        className="font-semibold text-sm bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white px-4 py-2 rounded-xl transition cursor-pointer"
-      >
-        Add
-      </button>
+      <div className="flex items-center justify-end gap-2 text-xs">
+        <button
+          type="button"
+          onClick={onClose}
+          className="px-3 py-1.5 font-medium text-slate-600 hover:bg-slate-100 rounded-md transition-colors"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="px-3 py-1.5 font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition-colors"
+        >
+          Add Task
+        </button>
+      </div>
     </form>
   );
 }
