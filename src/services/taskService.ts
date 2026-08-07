@@ -33,6 +33,7 @@ export const taskService = {
 
     tasks.push(newTask);
     saveTask(tasks);
+    return newTask;
   },
 
   updateTask(id: string, title: string) {

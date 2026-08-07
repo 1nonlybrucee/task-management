@@ -55,7 +55,7 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex gap-5">
         <ProjectsList
           projects={projects}
           onDelete={handleDelete}
