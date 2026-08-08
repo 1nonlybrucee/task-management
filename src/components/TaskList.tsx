@@ -40,10 +40,11 @@ export default function TaskList({
   };
 
   const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement>,
+    e: React.KeyboardEvent<HTMLTextAreaElement>,
     id: string,
   ) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
       handleSaveEdit(id);
     } else if (e.key === "Escape") {
       handleCancelEdit();
@@ -68,29 +69,29 @@ export default function TaskList({
         return (
           <div
             key={task.id}
-            className="group flex items-center justify-between gap-3 px-3.5 py-2.5 bg-white rounded-xl border border-slate-200/80 shadow-sm hover:border-slate-300 hover:shadow transition-all duration-150"
+            className="group flex items-start justify-between gap-3 px-3.5 py-3 bg-white rounded-xl border border-slate-200/80 shadow-sm hover:border-slate-300 hover:shadow transition-all duration-150"
           >
             {isEditing ? (
               <div className="flex-1 flex items-center gap-2">
-                <input
-                  type="text"
+                <textarea
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                   onKeyDown={(e) => handleKeyDown(e, task.id)}
-                  className="w-full text-sm font-medium text-slate-800 bg-slate-50 border border-indigo-300 rounded-lg px-2.5 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                  className="w-full text-sm font-medium text-slate-800 bg-slate-50 border border-indigo-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all resize-none"
+                  rows={2}
                   autoFocus
                 />
               </div>
             ) : (
-              <label className="flex-1 flex items-center gap-3 cursor-pointer min-w-0 select-none">
+              <label className="flex-1 flex items-start gap-3 cursor-pointer min-w-0 select-none">
                 <input
                   type="checkbox"
                   checked={task.status}
                   onChange={() => onToggle(task.id)}
-                  className="h-4 w-4 rounded border-slate-300 text-indigo-600 accent-indigo-600 focus:ring-indigo-500/20 transition-all cursor-pointer"
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 text-indigo-600 accent-indigo-600 focus:ring-indigo-500/20 transition-all cursor-pointer"
                 />
                 <span
-                  className={`text-sm font-medium truncate transition-colors ${
+                  className={`text-sm font-medium leading-relaxed wrap-break transition-colors ${
                     task.status
                       ? "text-slate-400 line-through"
                       : "text-slate-700"
@@ -101,7 +102,7 @@ export default function TaskList({
               </label>
             )}
 
-            <div className="flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-1 shrink-0 pt-0.5 opacity-90 group-hover:opacity-100 transition-opacity">
               {isEditing ? (
                 <>
                   <button

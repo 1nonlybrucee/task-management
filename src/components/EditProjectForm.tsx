@@ -15,6 +15,7 @@ export default function EditProjectForm({ project, onSave }: EditProjectProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!name.trim()) return;
     onSave({
       ...project,
       name: name.trim(),
@@ -22,33 +23,34 @@ export default function EditProjectForm({ project, onSave }: EditProjectProps) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex  flex-col items-center w-full bg-white border border-slate-200 shadow-sm max-w-sm rounded-xl p-6"
-    >
-      <div className="flex flex-col items-center mb-4">
-        <h1 className="font-bold text-xl">Edit Project</h1>
-        <p className="text-sm text-gray-500">
+    <form onSubmit={handleSubmit} className="flex flex-col w-full gap-4">
+      <div className="text-center pr-4">
+        <h1 className="text-xl font-bold text-slate-900">Edit Project</h1>
+        <p className="mt-1 text-xs text-slate-500">
           Enter the new name of the project.
         </p>
       </div>
 
-      <div className="flex flex-col">
-        <label className="text-xs font-semibold">Project name</label>
+      <div className="flex flex-col gap-1.5">
+        <label className="text-xs font-semibold tracking-wide text-slate-700">
+          Project name
+        </label>
         <input
           type="text"
           placeholder="Updated name"
-          className="border py-1.5 border-slate-400/80 rounded-md  focus:outline-blue-300 px-4"
+          className="w-full rounded-lg border border-slate-300 px-3.5 py-2 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           value={name}
           onChange={handleChange}
+          autoFocus
         />
-        <button
-          type="submit"
-          className="mt-1 w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.99]"
-        >
-          Save{" "}
-        </button>
       </div>
+
+      <button
+        type="submit"
+        className="mt-1 w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.99]"
+      >
+        Save
+      </button>
     </form>
   );
 }
