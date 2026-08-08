@@ -71,5 +71,6 @@ export const taskService = {
     }
     task.status = !task.status;
     saveTask(tasks);
+    return task;
   },
 };

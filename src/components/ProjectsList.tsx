@@ -46,6 +46,13 @@ export default function ProjectsList({
     setTasks(updatedTasks);
   };
 
+  const handleToggleStatus = (id: string) => {
+    const updatedTask = taskService.toggleComplete(id);
+    setTasks((prev) =>
+      prev.map((task) => (task.id === id ? updatedTask : task)),
+    );
+  };
+
   return (
     <div className="flex h-full min-h-0 items-start gap-4 overflow-x-auto overflow-y-hidden p-1">
       {projects.map((project) => (
@@ -92,6 +99,7 @@ export default function ProjectsList({
                 tasks={tasks}
                 onDelete={handleDeleteTask}
                 onEdit={handleEditTask}
+                onToggle={handleToggleStatus}
               />
             </div>
 
