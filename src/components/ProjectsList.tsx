@@ -34,6 +34,18 @@ export default function ProjectsList({
     return newTask;
   };
 
+  const handleDeleteTask = (id: string) => {
+    taskService.deleteTask(id);
+    const newTask = taskService.getTasks();
+    setTasks(newTask);
+  };
+
+  const handleEditTask = (id: string, name: string) => {
+    taskService.updateTask(id, name);
+    const updatedTasks = taskService.getTasks();
+    setTasks(updatedTasks);
+  };
+
   return (
     <div className="flex h-full min-h-0 items-start gap-4 overflow-x-auto overflow-y-hidden p-1">
       {projects.map((project) => (
@@ -52,7 +64,7 @@ export default function ProjectsList({
                 className="rounded-md p-1 transition-colors hover:bg-slate-100 hover:text-slate-700"
                 aria-label="Edit project"
               >
-                <SquarePen className="h-4 w-4" />
+                <SquarePen className="h-5 w-5" />
               </button>
 
               <button
@@ -60,7 +72,7 @@ export default function ProjectsList({
                 className="rounded-md p-1 transition-colors hover:bg-red-50 hover:text-red-600"
                 aria-label="Delete project"
               >
-                <Trash className="h-4 w-4" />
+                <Trash className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -75,7 +87,12 @@ export default function ProjectsList({
             )}
 
             <div className="min-h-0 overflow-y-auto">
-              <TaskList projectId={project.id} tasks={tasks} />
+              <TaskList
+                projectId={project.id}
+                tasks={tasks}
+                onDelete={handleDeleteTask}
+                onEdit={handleEditTask}
+              />
             </div>
 
             <button

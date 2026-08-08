@@ -60,7 +60,7 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <div className="h-full min-h-0">
+      <div className="h-full min-h-0 sm:overflow-auto">
         {projects.length === 0 ? (
           <EmptyProjects onCreateProject={openModal} />
         ) : (
