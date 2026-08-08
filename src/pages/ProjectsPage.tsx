@@ -56,6 +56,7 @@ export default function ProjectsPage() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setToEdit(undefined);
   };
 
   return (
