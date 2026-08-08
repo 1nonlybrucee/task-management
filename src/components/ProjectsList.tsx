@@ -5,17 +5,20 @@ import { useState } from "react";
 import TaskList from "./TaskList";
 import { taskService } from "../services/taskService";
 import type { Task } from "../types/task";
+import AddProjectButton from "./AddProjectButton";
 
 type ProjectsProps = {
   projects: Project[];
   onDelete: (id: string) => void;
   onEdit: (id: string) => void;
+  onAdd: () => void;
 };
 
 export default function ProjectsList({
   projects,
   onDelete,
   onEdit,
+  onAdd,
 }: ProjectsProps) {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
     null,
@@ -25,40 +28,44 @@ export default function ProjectsList({
 
   const handleCreateTask = (projectId: string, title: string) => {
     const newTask = taskService.createTask(projectId, title);
+
     setTasks((prev) => [...prev, newTask]);
+
     return newTask;
   };
 
   return (
-    <div className="flex gap-4 items-start overflow-x-auto p-1">
+    <div className="flex h-full min-h-0 items-start gap-4 overflow-x-auto overflow-y-hidden p-1">
       {projects.map((project) => (
         <div
           key={project.id}
-          className="flex flex-col gap-3 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm w-72 shrink-0"
+          className="flex max-h-full w-72 shrink-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
         >
           <div className="flex items-center justify-between gap-2">
-            <h3 className="text-lg font-bold text-slate-800 truncate">
+            <h3 className="truncate text-lg font-bold text-slate-800">
               {project.name}
             </h3>
-            <div className="flex items-center gap-1 text-slate-400 shrink-0">
+
+            <div className="flex shrink-0 items-center gap-1 text-slate-400">
               <button
                 onClick={() => onEdit(project.id)}
-                className="p-1 hover:text-slate-700 hover:bg-slate-100 transition-colors rounded-md"
+                className="rounded-md p-1 transition-colors hover:bg-slate-100 hover:text-slate-700"
                 aria-label="Edit project"
               >
-                <SquarePen className="w-4 h-4" />
+                <SquarePen className="h-4 w-4" />
               </button>
+
               <button
                 onClick={() => onDelete(project.id)}
-                className="p-1 hover:text-red-600 hover:bg-red-50 transition-colors rounded-md"
+                className="rounded-md p-1 transition-colors hover:bg-red-50 hover:text-red-600"
                 aria-label="Delete project"
               >
-                <Trash className="w-4 h-4" />
+                <Trash className="h-4 w-4" />
               </button>
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex min-h-0 flex-1 flex-col gap-2">
             {selectedProjectId === project.id && (
               <AddTaskForm
                 onCreate={handleCreateTask}
@@ -67,18 +74,24 @@ export default function ProjectsList({
               />
             )}
 
-            <TaskList projectId={project.id} tasks={tasks} />
+            <div className="min-h-0 overflow-y-auto">
+              <TaskList projectId={project.id} tasks={tasks} />
+            </div>
 
             <button
               onClick={() => setSelectedProjectId(project.id)}
-              className="flex items-center justify-center p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors rounded-lg w-fit mt-1"
+              className="mt-1 flex w-fit items-center justify-center rounded-lg p-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800"
               aria-label="Add task"
             >
-              <Plus className="w-5 h-5" />
+              <Plus className="h-5 w-5" />
             </button>
           </div>
         </div>
       ))}
+
+      <div className="shrink-0">
+        <AddProjectButton onClick={onAdd} />
+      </div>
     </div>
   );
 }
