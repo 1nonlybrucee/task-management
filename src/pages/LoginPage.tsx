@@ -69,12 +69,6 @@ export default function LoginPage() {
           />
           <div className="flex justify-between items-center">
             <label className="text-xs font-semibold px-">Password</label>
-            <NavLink
-              to={"/forgot-password"}
-              className={"text-xs text-blue-600 font-medium"}
-            >
-              Forgot password?
-            </NavLink>
           </div>
           <input
             name="password"

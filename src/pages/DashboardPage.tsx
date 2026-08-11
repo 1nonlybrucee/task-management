@@ -1,4 +1,5 @@
 import DashboardStats from "../components/dashboard/DashboardStats";
+import Projects from "../components/dashboard/Projects";
 
 export default function DashboardPage() {
   return (
@@ -6,6 +7,7 @@ export default function DashboardPage() {
       <h1 className="text-2xl font-bold">Dashboard</h1>
 
       <DashboardStats />
+      <Projects />
     </div>
   );
 }
