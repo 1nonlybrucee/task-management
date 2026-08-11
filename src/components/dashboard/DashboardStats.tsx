@@ -13,11 +13,23 @@ export default function DashboardStats() {
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-      <StatCard title="Projects" value={projects.length} />
+      <StatCard
+        title="Projects"
+        value={projects.length}
+        description={"Total projects"}
+      />
 
-      <StatCard title="Tasks" value={tasks.length} />
+      <StatCard
+        title="Tasks"
+        value={tasks.length}
+        description={`${completedTasks} out of ${tasks.length} tasks completed`}
+      />
 
-      <StatCard title="Completed" value={`${completionRate}%`} />
+      <StatCard
+        title="Completed"
+        value={`${completionRate}%`}
+        description={"Overall task progress"}
+      />
     </div>
   );
 }
