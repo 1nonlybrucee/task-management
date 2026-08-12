@@ -1,24 +1,82 @@
-# 📋 Task Management App(underdevelopment)
+# Task Management App
 
-A responsive, feature-rich Task Management app. Built with React to practice core frontend patterns, state management, and UI workflows.
+A simple task management app I built while learning React and TypeScript.
 
----
+The app lets you create projects and manage tasks inside them. I also added a dashboard and a global search for projects and tasks.
 
-## ✨ Features
+## Features
 
-- **Authentication UI:** Login, Register, Logout & Protected Routes.
-- **Dashboard Layout:** Responsive Sidebar, Navbar, and User Profile.
-- **Projects & Tasks:** Full CRUD (Create, Read, Update, Delete) for projects and tasks.
-- **Task Details:** Priority levels, Due Dates, Descriptions, and Completion status.
-- **Search, Filter & Sort:** Instant search with multi-criteria filtering and sorting.
-- **Interactive UI:** Modals for editing, Toast notifications, and Loading Skeletons.
-- **Local Storage:** Full state persistence across refreshes (backend-ready architecture).
+- Create and delete projects
+- Create, edit, and delete tasks
+- Mark tasks as completed
+- Dashboard with project and task overview
+- Search for projects and tasks
+- Responsive UI
+- Data stored using Local Storage
+- Login and registration
+- Protected routes
 
----
+## Built With
 
-## 🛠️ Tech Stack
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Context API
+- Local Storage
 
-- **React** + **Vite**
-- **React Router**
-- **Context API / Custom Hooks**
-- **CSS / Tailwind CSS**
+## Running the Project
+
+Clone the repository:
+
+```bash
+git clone <your-repository-url>
+```
+
+Go into the project folder:
+
+```bash
+cd <project-folder>
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Then open the local URL shown in the terminal.
+
+## Notes
+
+This is a frontend-only project for now. The app uses Local Storage for its data, so projects and tasks are only stored in the current browser.
+
+There is no backend or database yet.
+
+## What I Learned
+
+While building this project, I practiced:
+
+- React components and props
+- useState and useEffect
+- Context API
+- React Router
+- TypeScript types
+- CRUD operations
+- Local Storage
+- Reusable components
+- Basic responsive design
+- Git and GitHub
+
+## Author
+
+Bruce Goyena
+
+BS Computer Science Student
