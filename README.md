@@ -31,13 +31,13 @@ The app lets you create projects and manage tasks inside them. I also added a da
 Clone the repository:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/1nonlybrucee/task-management.git
 ```
 
 Go into the project folder:
 
 ```bash
-cd <project-folder>
+cd task-management
 ```
 
 Install the dependencies:
