@@ -61,6 +61,8 @@ export default function ProjectsPage() {
 
   return (
     <>
+      <h1 className="text-2xl font-bold mb-6">Projects</h1>
+
       <div className="h-full min-h-0 sm:overflow-auto">
         {projects.length === 0 ? (
           <EmptyProjects onCreateProject={openModal} />

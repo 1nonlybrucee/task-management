@@ -54,11 +54,11 @@ export default function ProjectsList({
   };
 
   return (
-    <div className="flex h-full min-h-0 items-start gap-4 overflow-x-auto overflow-y-hidden p-1">
+    <div className="flex h-full min-h-0 items-start gap-4 overflow-x-auto overflow-y-hidden">
       {projects.map((project) => (
         <div
           key={project.id}
-          className="flex max-h-full w-72 shrink-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+          className="flex max-h-full w-72 shrink-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-md"
         >
           <div className="flex items-center justify-between gap-2">
             <h3 className="truncate text-lg font-bold text-slate-800">
