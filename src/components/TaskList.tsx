@@ -69,7 +69,7 @@ export default function TaskList({
         return (
           <div
             key={task.id}
-            className="group flex items-start justify-between gap-3 px-3.5 py-3 bg-white rounded-xl border border-slate-200/80 shadow-sm hover:border-slate-300 hover:shadow transition-all duration-150"
+            className="group flex items-center justify-between gap-3 px-3.5 py-3 bg-white rounded-xl border border-slate-200/80 shadow-sm hover:border-slate-300 hover:shadow transition-all duration-150"
           >
             {isEditing ? (
               <div className="flex-1 flex items-center gap-2">
@@ -83,7 +83,7 @@ export default function TaskList({
                 />
               </div>
             ) : (
-              <label className="flex-1 flex items-start gap-3 cursor-pointer min-w-0 select-none">
+              <label className="flex-1 flex items-center gap-3 cursor-pointer min-w-0 select-none">
                 <input
                   type="checkbox"
                   checked={task.status}
